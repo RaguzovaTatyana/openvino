@@ -27,6 +27,7 @@ PYTHON_VERSION = f'python{sys.version_info.major}.{sys.version_info.minor}'
 SCRIPT_DIR = Path(__file__).resolve().parents[0]
 OPENVINO_DIR = Path(__file__).resolve().parents[2]
 SRC_DIR = SCRIPT_DIR / 'src'
+WORKING_DIR = Path.cwd()
 
 PKG_INSTALL_CFG = {
     'openvino-mo': {
@@ -178,6 +179,7 @@ class CustomClean(clean):
                 src_dir = Path(comp_data.get('src_dir'))
                 paths += src_dir.glob(pattern)
             paths += SCRIPT_DIR.glob(pattern)
+            paths += os.path.join(WORKING_DIR, "tools", "openvino_dev").glob(pattern)
             for path in paths:
                 if path.is_file() and path.exists():
                     path = path.parent
@@ -308,7 +310,7 @@ setup(
         'install': CustomInstall,
         'clean': CustomClean,
     },
-    entry_points = {
+    entry_points={
         'console_scripts': [],
     },
     install_requires=read_requirements(SCRIPT_DIR / 'requirements.txt'),

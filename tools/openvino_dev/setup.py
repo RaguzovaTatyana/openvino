@@ -312,6 +312,10 @@ setup(
         'console_scripts': [],
     },
     install_requires=read_requirements(SCRIPT_DIR / 'requirements.txt'),
+    extras_require={
+        'nlp': read_requirements(SCRIPT_DIR / 'requirements_nlp.txt'),
+        'vision': read_requirements(SCRIPT_DIR / 'requirements_vision.txt'),
+    },
     packages=find_namespace_packages(where=str(SRC_DIR)),
     package_dir={'': str(SRC_DIR)},
 )

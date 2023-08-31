@@ -1,0 +1,8 @@
+-c ../constraints.txt
+tensorflow<2.13.0
+defusedxml
+protobuf
+PyYAML
+requests
+tqdm
+urllib3
